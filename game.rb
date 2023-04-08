@@ -1,5 +1,6 @@
 require_relative "code"
 require_relative "ball"
+require_relative "player"
 
 module Game
 def self.start_game
@@ -9,6 +10,13 @@ def self.start_game
   name = gets.chomp
   puts
   puts"Welcom, dear #{name}. Let the game begin"
+  code_breaker = Player.new(name)
+  combination(code_breaker)
+end
+
+def self.winning_combination
+  random_ball
+
 end
 
 
@@ -25,4 +33,3 @@ new_code.make_it_source
 po = new_code.balls
 po.each {|ball| p ball.color }
 end
-

@@ -1,3 +1,5 @@
+require_relative "game"
+
 class Player
   attr_reader :name
 
@@ -5,5 +7,4 @@ class Player
     @name = name
   end
 
-  include Game
 end
