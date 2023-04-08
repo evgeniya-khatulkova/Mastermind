@@ -1,3 +1,6 @@
+require_relative "game"
+
+
 class Ball
 
   attr_accessor :color, :place, :code
@@ -8,7 +11,7 @@ class Ball
   end
 
   def self.random_balls(code)
-    colors = ["red", "yellow", "blue", "green", "white",                   "black", "brown", "orange"]
+    colors = ["red", "yellow", "blue", "green", "white", "black", "brown", "orange"]
     positions = [1, 2, 3, 4]
     4.times do
       position_random = positions.sample

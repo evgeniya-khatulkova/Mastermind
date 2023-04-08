@@ -4,3 +4,4 @@ require_relative "code"
 require_relative "player"
 
 Game.start_game
+Game.set_sourse_code

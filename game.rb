@@ -11,12 +11,13 @@ def self.start_game
   puts
   puts"Welcom, dear #{name}. Let the game begin"
   code_breaker = Player.new(name)
-  combination(code_breaker)
+
 end
 
-def self.winning_combination
-  random_ball
-
+def self.set_sourse_code
+  sourse_code = Code.new
+  Ball.random_balls(sourse_code)
+  p sourse_code
 end
 
 
