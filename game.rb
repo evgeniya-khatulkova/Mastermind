@@ -33,9 +33,17 @@ def self.take_a_try(sourse_code)
       puts "Choose a color:"
       puts colors
       chosen_color = gets.chomp
+      until colors.include?(chosen_color)
+        puts "Choose from the availbale colors"
+        chosen_color = gets.chomp
+      end
       puts "Choose a position:"
       puts positions
       chosen_position = gets.chomp.to_i
+      until positions.include?(chosen_position)
+        puts "Choose from the availbale colors"
+        chosen_position = gets.chomp.to_i
+      end
       colors.delete(chosen_color)
       positions.delete(chosen_position)
       code.add_ball(Ball.new(chosen_color, chosen_position))
