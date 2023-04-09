@@ -19,8 +19,12 @@ class Code
 
   def tries_count
     @tries
-    puts "You have #{13 - @tries} left"
+    puts "You have #{13 - @tries} tries left"
   end
 
+  def compare_code(sourse_code)
+    p sourse_code.balls
+    p @balls == sourse_code.balls
+  end
 
 end

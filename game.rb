@@ -1,10 +1,14 @@
+RED="\e[31m"
+ENDCOLOR="\e[0m"
+
+
 require_relative "code"
-require_relative "ball"
+# require_relative "ball"
 
 
 module Game
 def self.start_game
-  puts "  Let's play Mastermind. Mastermind is a code-breaking game played by two players using a board with colored pegs. One player creates a secret code, and the other player tries to guess it using feedback provided about their guesses.
+  puts "  Let's play #{RED}Mastermind#{ENDCOLOR}. Mastermind is a code-breaking game played by two players using a board with colored pegs. One player creates a secret code, and the other player tries to guess it using feedback provided about their guesses.
   Code will consist of 4 pegs and the code-breaker has 12 tries to find out the right combination."
   puts "Please, enter the name of the code-breaker"
   name = gets.chomp
@@ -17,10 +21,11 @@ end
 def self.set_sourse_code
   sourse_code = Code.new
   Ball.random_balls(sourse_code)
-  p sourse_code.tries_count
+  sourse_code.tries_count
+  self.take_a_try(sourse_code)
 end
 
-def self.take_a_try
+def self.take_a_try(sourse_code)
   code = Code.new
   colors = ["red", "yellow", "blue", "green", "white", "black", "brown", "orange"]
   positions = [1, 2, 3, 4]
@@ -34,21 +39,8 @@ def self.take_a_try
       colors.delete(chosen_color)
       positions.delete(chosen_position)
       code.add_ball(Ball.new(chosen_color, chosen_position))
-      p code
     end
+    p code
+    code.compare_code(sourse_code)
 end
-
-
-ball_1 = Ball.new("black", 4)
-ball_2 = Ball.new("white",2)
-ball_3 = Ball.new("yellow",3)
-ball_4 = Ball.new("red",1)
-new_code = Code.new
-new_code.add_ball(ball_1)
-new_code.add_ball(ball_2)
-new_code.add_ball(ball_3)
-new_code.add_ball(ball_4)
-new_code.make_it_source
-po = new_code.balls
-po.each {|ball| p ball.color }
 end

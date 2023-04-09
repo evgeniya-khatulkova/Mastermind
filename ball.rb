@@ -1,4 +1,6 @@
 require_relative "game"
+
+
 class Ball
   attr_accessor :color, :place, :code
 
@@ -6,6 +8,7 @@ class Ball
     @color = color
     @place = place
   end
+include Game
 
   def self.random_balls(code)
     colors = ["red", "yellow", "blue", "green", "white", "black", "brown", "orange"]
@@ -18,6 +21,5 @@ class Ball
       code.add_ball(Ball.new(color_random, position_random))
     end
   end
-
 
 end
