@@ -6,5 +6,5 @@ class Player
   def initialize(name)
     @name = name
   end
-
+include Game
 end

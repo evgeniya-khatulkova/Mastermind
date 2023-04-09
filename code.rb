@@ -17,5 +17,9 @@ class Code
     @balls << ball
   end
 
+  def tries_count
+    @tries
+    puts "You have #{13 - @tries} left"
+  end
 
 end

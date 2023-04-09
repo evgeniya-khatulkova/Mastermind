@@ -1,6 +1,6 @@
 require_relative "code"
 require_relative "ball"
-require_relative "player"
+
 
 module Game
 def self.start_game
@@ -17,7 +17,7 @@ end
 def self.set_sourse_code
   sourse_code = Code.new
   Ball.random_balls(sourse_code)
-  p sourse_code
+  p sourse_code.tries_count
 end
 
 
