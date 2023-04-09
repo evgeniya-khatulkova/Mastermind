@@ -23,8 +23,11 @@ class Code
   end
 
   def compare_code(sourse_code)
-    p sourse_code.balls
-    p @balls == sourse_code.balls
+  p sourse_code.balls
+   hint = @balls.count do |ball|
+     sourse_code.balls.any?{ |source_ball| source_ball.color == ball.color}
+   end
+   p "There are #{hint} colors match"
   end
 
 end
