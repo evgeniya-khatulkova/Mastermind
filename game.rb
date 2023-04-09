@@ -20,6 +20,21 @@ def self.set_sourse_code
   p sourse_code.tries_count
 end
 
+def self.take_a_try
+  colors = ["red", "yellow", "blue", "green", "white", "black", "brown", "orange"]
+  positions = [1, 2, 3, 4]
+  #   4.times do
+  puts "Choose a color:"
+  puts colors
+  chosen_color = gets.chomp
+  puts "Choose a position:"
+  puts positions
+  chosen_position = gets.chomp
+  colors.delete(chosen_color)
+  positions.delete(chosen_position)
+  p Code.new.add_ball(Ball.new(chosen_color, chosen_position))
+end
+
 
 ball_1 = Ball.new("black", 4)
 ball_2 = Ball.new("white",2)

@@ -1,8 +1,5 @@
 require_relative "game"
-
-
 class Ball
-
   attr_accessor :color, :place, :code
 
   def initialize(color, place)
@@ -21,5 +18,6 @@ class Ball
       code.add_ball(Ball.new(color_random, position_random))
     end
   end
+
 
 end

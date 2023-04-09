@@ -22,4 +22,5 @@ class Code
     puts "You have #{13 - @tries} left"
   end
 
+
 end
