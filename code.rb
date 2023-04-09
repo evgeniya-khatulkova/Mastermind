@@ -1,6 +1,6 @@
 class Code
 
-  attr_reader :balls
+  attr_reader :balls, :tries
 
   def initialize()
     @source = false
@@ -20,6 +20,7 @@ class Code
   def tries_count
     @tries
     puts "You have #{13 - @tries} tries left"
+    @tries
   end
 
   def compare_code(sourse_code)
