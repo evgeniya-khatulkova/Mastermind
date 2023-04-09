@@ -21,18 +21,21 @@ def self.set_sourse_code
 end
 
 def self.take_a_try
+  code = Code.new
   colors = ["red", "yellow", "blue", "green", "white", "black", "brown", "orange"]
   positions = [1, 2, 3, 4]
-  #   4.times do
-  puts "Choose a color:"
-  puts colors
-  chosen_color = gets.chomp
-  puts "Choose a position:"
-  puts positions
-  chosen_position = gets.chomp
-  colors.delete(chosen_color)
-  positions.delete(chosen_position)
-  p Code.new.add_ball(Ball.new(chosen_color, chosen_position))
+    4.times do
+      puts "Choose a color:"
+      puts colors
+      chosen_color = gets.chomp
+      puts "Choose a position:"
+      puts positions
+      chosen_position = gets.chomp.to_i
+      colors.delete(chosen_color)
+      positions.delete(chosen_position)
+      code.add_ball(Ball.new(chosen_color, chosen_position))
+      p code
+    end
 end
 
 
