@@ -26,6 +26,7 @@ class Code
     p "There are #{hint} right color pings in your code"
     p "There are #{hint_absolute} pings with colors match on the right places"
     if hint_absolute == 4
+      puts "Congratulations you won the game! You are a real code breaker))"
       end_game
     end
   end

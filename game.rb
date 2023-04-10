@@ -7,6 +7,7 @@ ENDCOLOR="\e[0m"
 
 
 module Game
+
 def self.start_game
   puts "  Let's play #{RED}Mastermind#{ENDCOLOR}. Mastermind is a code-breaking game played by two players using a board with colored pegs. One player creates a secret code, and the other player tries to guess it using feedback provided about their guesses.
   Code will consist of 4 pegs and the code-breaker has 12 tries to find out the right combination."
@@ -15,7 +16,7 @@ def self.start_game
   puts
   puts"Welcom, dear  #{RED}#{name}#{ENDCOLOR}. Let the game begin"
   code_breaker = Player.new(name)
-
+  set_sourse_code
 end
 
 def self.set_sourse_code
@@ -69,10 +70,18 @@ def self.take_a_try(sourse_code)
     i += 1
   end
   puts "Oops, seems like you lost. Do you want to try to break the code again?"
+  end_game
 end
 
 def end_game
-  puts "Congratulations you won the game! You are a real code breaker))"
+  puts "Do you want to play again? Y/n"
+  answer = gets.chomp
+  until answer.downcase == "y" || answer.downcase == "n"
+    "y - for yes, n - for no "
+    answer = gets.chomp
+  end
+  if answer == "y"
+    Game.start_game
+  end
 end
-
 end
