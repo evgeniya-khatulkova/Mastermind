@@ -18,6 +18,7 @@ class Code
   def compare_code(sourse_code)
   # p sourse_code.balls
   puts "#{MAGENTA}                              #{ENDCOLOR}"
+  @balls = @balls.sort {|a, b| a.place<=>b.place}
   @balls.each {|ball| print "|#{ball.place}-#{ball.color}|"}
    hint = @balls.count do |ball|
       sourse_code.balls.any?{ |source_ball| source_ball.color == ball.color}
