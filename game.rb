@@ -1,10 +1,9 @@
 RED="\e[31m"
+MAGENTA="\e[45m"
 ENDCOLOR="\e[0m"
-
 
 # require_relative "code"
 # require_relative "ball"
-
 
 module Game
 
@@ -14,7 +13,7 @@ def self.start_game
   puts "Please, enter the name of the code-breaker"
   name = gets.chomp
   puts
-  puts"Welcom, dear  #{RED}#{name}#{ENDCOLOR}. Let the game begin"
+  puts"Welcom, dear #{RED}#{name}#{ENDCOLOR}. Let the game begin"
   code_breaker = Player.new(name)
   set_sourse_code
 end
@@ -28,7 +27,8 @@ end
 def self.choose_color(colors)
   puts
   puts "Choose a color:"
-  puts colors
+  colors.each {|color| print " #{color} "}
+  puts
   chosen_color = gets.chomp
   until colors.include?(chosen_color)
     puts "Choose from the availbale colors"
@@ -40,7 +40,8 @@ end
 def self.choose_position(positions)
   puts
   puts "Choose a position:"
-  puts positions
+  positions.each {|position| print " #{position}"}
+  puts
   chosen_position = gets.chomp.to_i
   until positions.include?(chosen_position)
     puts "Choose from the available positions"
@@ -64,8 +65,8 @@ def self.take_a_try(sourse_code)
       positions.delete(chosen_position)
       code.add_ball(Ball.new(chosen_color, chosen_position))
     end
-    p code
-    p sourse_code
+    # p code
+    # p sourse_code
     code.compare_code(sourse_code)
     i += 1
   end
