@@ -22,13 +22,15 @@ include Game
 
   def compare_code(sourse_code, code_breaker)
   # p sourse_code.balls
-  puts "#{MAGENTA}                              #{ENDCOLOR}"
   balls = @balls.sort {|a, b| a.place<=>b.place}
-  p balls
+  # p balls
   code_breaker.add_to_history(balls)
-  p code_breaker
+  # p code_breaker
   code_breaker.history.each do |code|
-    puts code.each {|ball| print "|#{ball.place}-#{ball.color}|"}
+    puts "-----------------------------------"
+    code.each {|ball| print "#{MAGENTA}|#{ball.place}-#{ball.color}|#{ENDCOLOR}"}
+    puts
+    puts "-----------------------------------"
   end
   balls.each {|ball| print "|#{ball.place}-#{ball.color}|"}
    hint = @balls.count do |ball|
