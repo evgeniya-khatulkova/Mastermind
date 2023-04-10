@@ -10,11 +10,11 @@ module Game
 def self.start_game
   puts "  Let's play #{RED}Mastermind#{ENDCOLOR}. Mastermind is a code-breaking game played by two players using a board with colored pegs. One player creates a secret code, and the other player tries to guess it using feedback provided about their guesses.
   Code will consist of 4 pegs and the code-breaker has 12 tries to find out the right combination."
-  puts "Please, enter the name of the code-breaker"
-  name = gets.chomp
-  puts
-  puts"Welcom, dear #{RED}#{name}#{ENDCOLOR}. Let the game begin"
-  code_breaker = Player.new(name)
+  # puts "Please, enter the name of the code-breaker"
+  # name = gets.chomp
+  # puts
+  # puts"Welcom, dear #{RED}#{name}#{ENDCOLOR}. Let the game begin"
+  # code_breaker = Player.new(name)
   set_sourse_code
 end
 
@@ -51,6 +51,11 @@ def self.choose_position(positions)
 end
 
 def self.take_a_try(sourse_code)
+  puts "Please, enter the name of the code-breaker"
+  name = gets.chomp
+  puts
+  puts"Welcom, dear #{RED}#{name}#{ENDCOLOR}. Let the game begin"
+  code_breaker = Player.new(name)
   code = Code.new
   i = 0
   while i < 13
@@ -67,7 +72,7 @@ def self.take_a_try(sourse_code)
     end
     # p code
     # p sourse_code
-    code.compare_code(sourse_code)
+    code.compare_code(sourse_code, code_breaker)
     i += 1
   end
   puts "Oops, seems like you lost. Do you want to try to break the code again?"

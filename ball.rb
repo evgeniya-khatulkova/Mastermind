@@ -1,4 +1,5 @@
 require_relative "game"
+require_relative "code"
 
 class Ball
   attr_accessor :color, :place, :code
