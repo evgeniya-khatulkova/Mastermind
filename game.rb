@@ -13,7 +13,7 @@ def self.start_game
   puts "Please, enter the name of the code-breaker"
   name = gets.chomp
   puts
-  puts"Welcom, dear #{name}. Let the game begin"
+  puts"Welcom, dear  #{RED}#{name}#{ENDCOLOR}. Let the game begin"
   code_breaker = Player.new(name)
 
 end
@@ -21,7 +21,6 @@ end
 def self.set_sourse_code
   sourse_code = Code.new
   Ball.random_balls(sourse_code)
-  # sourse_code.tries_count
   self.take_a_try(sourse_code)
 end
 
@@ -65,10 +64,15 @@ def self.take_a_try(sourse_code)
       code.add_ball(Ball.new(chosen_color, chosen_position))
     end
     p code
+    p sourse_code
     code.compare_code(sourse_code)
     i += 1
   end
+  puts "Oops, seems like you lost. Do you want to try to break the code again?"
+end
 
+def end_game
+  puts "Congratulations you won the game! You are a real code breaker))"
 end
 
 end

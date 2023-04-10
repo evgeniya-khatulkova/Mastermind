@@ -1,6 +1,5 @@
 require_relative "game"
 
-
 class Ball
   attr_accessor :color, :place, :code
 
@@ -21,5 +20,4 @@ include Game
       code.add_ball(Ball.new(color_random, position_random))
     end
   end
-
 end

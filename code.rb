@@ -1,10 +1,8 @@
 class Code
 
-  attr_reader :balls, :tries
+  attr_reader :balls
 
   def initialize()
-    @source = false
-    @tries =+ 1
     @balls = []
   end
 
@@ -17,12 +15,6 @@ class Code
     @balls << ball
   end
 
-  def tries_count
-    @tries
-    puts "You have #{13 - @tries} tries left"
-    @tries
-  end
-
   def compare_code(sourse_code)
   p sourse_code.balls
    hint = @balls.count do |ball|
@@ -33,6 +25,8 @@ class Code
     end
     p "There are #{hint} right color pings in your code"
     p "There are #{hint_absolute} pings with colors match on the right places"
+    if hint_absolute == 4
+      end_game
+    end
   end
-
 end
