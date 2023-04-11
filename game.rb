@@ -1,5 +1,5 @@
 RED="\e[31m"
-MAGENTA="\e[45m"
+MAGENTA="\e[42m"
 ENDCOLOR="\e[0m"
 
 # require_relative "code"
@@ -83,6 +83,9 @@ def end_game
   end
   if answer == "y"
     Game.start_game
+  elsif answer == "n"
+    exit
   end
 end
+
 end
