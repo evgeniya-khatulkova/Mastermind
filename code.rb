@@ -1,12 +1,14 @@
 require_relative "player"
 require_relative "game"
+# require_relative "hint"
 
 class Code
 
-  attr_accessor :balls, :player
+  attr_accessor :balls, :player, :hints
 
   def initialize()
     @balls = []
+    @hints = []
   end
 
 include Game
@@ -18,6 +20,10 @@ include Game
 
   def add_ball(ball)
     @balls << ball
+  end
+
+  def add_hint(hint)
+    @hints << hint
   end
 
   def compare_code(sourse_code, code_breaker)
@@ -36,7 +42,10 @@ include Game
     hint_absolute = @balls.count do |ball|
       sourse_code.balls.any?{ |source_ball| source_ball.color == ball.color && source_ball.place == ball.place}
     end
-    puts
+    boom = self.add_hint(Hint.new("white"))
+    code_breaker.add_to_history(boom)
+    p code_breaker
+
     p "There are #{hint} right color pings in your code"
     p "There are #{hint_absolute} pings with colors match on the right places"
     if hint_absolute == 4
