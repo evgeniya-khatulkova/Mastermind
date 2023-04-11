@@ -1,9 +1,7 @@
 RED="\e[31m"
+YELLOW="\e[33m"
 MAGENTA="\e[42m"
 ENDCOLOR="\e[0m"
-
-# require_relative "code"
-# require_relative "ball"
 
 module Game
 

@@ -1,6 +1,5 @@
 require_relative "player"
 require_relative "game"
-# require_relative "hint"
 
 class Code
 
@@ -42,8 +41,15 @@ include Game
     hint_absolute = @balls.count do |ball|
       sourse_code.balls.any?{ |source_ball| source_ball.color == ball.color && source_ball.place == ball.place}
     end
-    boom = self.add_hint(Hint.new("white"))
-    code_breaker.add_to_history(boom)
+
+    hint.times do
+      code_breaker.add_to_history(self.add_hint(Hint.new("#{YELLOW}*#{ENDCOLOR}")))
+    end
+
+    hint_absolute.times do
+      code_breaker.add_to_history(self.add_hint(Hint.new("#{RED}*#{ENDCOLOR}")))
+    end
+
     p code_breaker
 
     p "There are #{hint} right color pings in your code"
