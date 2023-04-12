@@ -26,17 +26,10 @@ include Game
   end
 
   def compare_code(sourse_code, code_breaker)
-  @balls.sort {|a, b| a.place<=>b.place}
+  @balls = @balls.sort {|a, b| a.place<=>b.place}
   code_breaker.add_to_history(self)
 
-  code_breaker.history.each do |code|
-    puts "-----------------------------------"
-    code.balls.each {|ball| print "#{MAGENTA}|#{ball.place}-#{ball.color}|#{ENDCOLOR}"}
-    puts code.hints_absolute
-    puts code.hints_color
-    puts "-----------------------------------"
-  end
-  balls.each {|ball| print "|#{ball.place}-#{ball.color}|"}
+  # balls.each {|ball| print "|#{ball.place}-#{ball.color}|"}
    hint = @balls.count do |ball|
       sourse_code.balls.any?{ |source_ball| source_ball.color == ball.color}
     end
@@ -46,11 +39,24 @@ include Game
 
     self.add_hint_color(hint)
     self.add_hint_absolute(hint_absolute)
-    # hint.times do
-    # code_breaker.add_to_history(self.add_hint(Hint.new("white")))
-    # end
 
-    p code_breaker
+
+  code_breaker.history.each do |code|
+    puts "--------------------------------------------------"
+    code.balls.each {|ball| print "#{MAGENTA}|#{ball.place}-#{ball.color}|#{ENDCOLOR}"}
+    code.hints_absolute.times { print "#{RED}*#{ENDCOLOR}"}
+    print "    "
+    code.hints_color.times do
+      print " #{YELLOW}*#{ENDCOLOR}"
+    end
+    code.hints_absolute.times do
+      print " #{RED}*#{ENDCOLOR}"
+    end
+    puts
+    puts "-------------------------------------------------"
+  end
+
+    # p code_breaker
 
     p "There are #{hint} right color pings in your code"
     p "There are #{hint_absolute} pings with colors match on the right places"
