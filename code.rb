@@ -3,35 +3,37 @@ require_relative "game"
 
 class Code
 
-  attr_accessor :balls, :player, :hints
+  attr_accessor :balls, :player, :hints_color, :hints_absolute
 
   def initialize()
     @balls = []
-    @hints = []
+    @hints_color = 0
+    @hints_absolute = 0
   end
 
 include Game
-
-  def make_it_source
-    @source = true
-    @tries = 0
-  end
 
   def add_ball(ball)
     @balls << ball
   end
 
-  def add_hint(hint)
-    @hints << hint
+  def add_hint_color(hint)
+    @hints_color += hint
+  end
+
+  def add_hint_absolute(hint)
+    @hints_absolute += hint
   end
 
   def compare_code(sourse_code, code_breaker)
-  balls = @balls.sort {|a, b| a.place<=>b.place}
-  code_breaker.add_to_history(balls)
+  @balls.sort {|a, b| a.place<=>b.place}
+  code_breaker.add_to_history(self)
+
   code_breaker.history.each do |code|
     puts "-----------------------------------"
-    code.each {|ball| print "#{MAGENTA}|#{ball.place}-#{ball.color}|#{ENDCOLOR}"}
-    puts
+    code.balls.each {|ball| print "#{MAGENTA}|#{ball.place}-#{ball.color}|#{ENDCOLOR}"}
+    puts code.hints_absolute
+    puts code.hints_color
     puts "-----------------------------------"
   end
   balls.each {|ball| print "|#{ball.place}-#{ball.color}|"}
@@ -42,13 +44,11 @@ include Game
       sourse_code.balls.any?{ |source_ball| source_ball.color == ball.color && source_ball.place == ball.place}
     end
 
-    hint.times do
-      code_breaker.add_to_history(self.add_hint(Hint.new("#{YELLOW}*#{ENDCOLOR}")))
-    end
-
-    hint_absolute.times do
-      code_breaker.add_to_history(self.add_hint(Hint.new("#{RED}*#{ENDCOLOR}")))
-    end
+    self.add_hint_color(hint)
+    self.add_hint_absolute(hint_absolute)
+    # hint.times do
+    # code_breaker.add_to_history(self.add_hint(Hint.new("white")))
+    # end
 
     p code_breaker
 
