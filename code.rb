@@ -25,6 +25,8 @@ include Game
     @hints_absolute += hint
   end
 
+
+
   def compare_code(sourse_code, code_breaker)
   @balls = @balls.sort {|a, b| a.place<=>b.place}
   code_breaker.add_to_history(self)
@@ -41,20 +43,7 @@ include Game
     self.add_hint_absolute(hint_absolute)
 
 
-  code_breaker.history.each do |code|
-    puts "--------------------------------------------------"
-    code.balls.each {|ball| print "#{MAGENTA}|#{ball.place}-#{ball.color}|#{ENDCOLOR}"}
-    code.hints_absolute.times { print "#{RED}*#{ENDCOLOR}"}
-    print "    "
-    code.hints_color.times do
-      print " #{YELLOW}*#{ENDCOLOR}"
-    end
-    code.hints_absolute.times do
-      print " #{RED}*#{ENDCOLOR}"
-    end
-    puts
-    puts "-------------------------------------------------"
-  end
+    code_breaker.dashboard
 
     # p code_breaker
 
