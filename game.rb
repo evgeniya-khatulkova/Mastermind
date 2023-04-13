@@ -24,8 +24,14 @@ def self.set_sourse_code
   self.take_a_try(sourse_code)
   elsif role == "1"
     puts "BOOM"
-    exit
+    make_code
   end
+end
+
+def self.make_code
+  sourse_code = Code.new
+  choose_process(sourse_code)
+  p sourse_code
 end
 
 def self.choose_color(colors)
@@ -65,20 +71,24 @@ def self.take_a_try(sourse_code)
   while i < 13
     puts "You have #{12 - i} tries"
     code = Code.new
-    colors = ["red", "yellow", "blue", "green", "white", "black", "brown", "orange"]
-    positions = [1, 2, 3, 4]
-      4.times do
-        chosen_color = self.choose_color(colors)
-        chosen_position = self.choose_position(positions)
-        colors.delete(chosen_color)
-        positions.delete(chosen_position)
-        code.add_ball(Ball.new(chosen_color, chosen_position))
-      end
+    self.choose_process(code)
     code.compare_code(sourse_code, code_breaker)
     i += 1
   end
   puts "Oops, seems like you lost. Do you want to try to break the code again?"
   end_game
+end
+
+def self.choose_process(code)
+colors = ["red", "yellow", "blue", "green", "white", "black", "brown", "orange"]
+positions = [1, 2, 3, 4]
+  4.times do
+    chosen_color = self.choose_color(colors)
+    chosen_position = self.choose_position(positions)
+    colors.delete(chosen_color)
+    positions.delete(chosen_position)
+    code.add_ball(Ball.new(chosen_color, chosen_position))
+  end
 end
 
 def end_game
