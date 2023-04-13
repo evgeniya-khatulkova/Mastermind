@@ -12,9 +12,20 @@ def self.start_game
 end
 
 def self.set_sourse_code
+  puts "Do you want to be code-maker or code-breaker? Choose 1(code-maker) or 2(code-breaker)"
+  role = gets.chomp
+  until role == "1" || role == "2"
+    puts "press 1 for code-maker or 2 for code-breaker"
+    role = gets.chomp
+  end
+  if role == "2"
   sourse_code = Code.new
   Ball.random_balls(sourse_code)
   self.take_a_try(sourse_code)
+  elsif role == "1"
+    puts "BOOM"
+    exit
+  end
 end
 
 def self.choose_color(colors)
@@ -52,19 +63,17 @@ def self.take_a_try(sourse_code)
   code = Code.new
   i = 0
   while i < 13
-  puts "You have #{12 - i} tries"
-  code = Code.new
-  colors = ["red", "yellow", "blue", "green", "white", "black", "brown", "orange"]
-  positions = [1, 2, 3, 4]
-    4.times do
-      chosen_color = self.choose_color(colors)
-      chosen_position = self.choose_position(positions)
-      colors.delete(chosen_color)
-      positions.delete(chosen_position)
-      code.add_ball(Ball.new(chosen_color, chosen_position))
-    end
-    # p code
-    # p sourse_code
+    puts "You have #{12 - i} tries"
+    code = Code.new
+    colors = ["red", "yellow", "blue", "green", "white", "black", "brown", "orange"]
+    positions = [1, 2, 3, 4]
+      4.times do
+        chosen_color = self.choose_color(colors)
+        chosen_position = self.choose_position(positions)
+        colors.delete(chosen_color)
+        positions.delete(chosen_position)
+        code.add_ball(Ball.new(chosen_color, chosen_position))
+      end
     code.compare_code(sourse_code, code_breaker)
     i += 1
   end
@@ -85,5 +94,4 @@ def end_game
     exit
   end
 end
-
 end

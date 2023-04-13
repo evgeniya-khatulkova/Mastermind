@@ -25,13 +25,10 @@ include Game
     @hints_absolute += hint
   end
 
-
-
   def compare_code(sourse_code, code_breaker)
-  @balls = @balls.sort {|a, b| a.place<=>b.place}
-  code_breaker.add_to_history(self)
+    @balls = @balls.sort {|a, b| a.place<=>b.place}
+    code_breaker.add_to_history(self)
 
-  # balls.each {|ball| print "|#{ball.place}-#{ball.color}|"}
    hint = @balls.count do |ball|
       sourse_code.balls.any?{ |source_ball| source_ball.color == ball.color}
     end
@@ -42,10 +39,7 @@ include Game
     self.add_hint_color(hint)
     self.add_hint_absolute(hint_absolute)
 
-
     code_breaker.dashboard
-
-    # p code_breaker
 
     p "There are #{hint} right color pings in your code"
     p "There are #{hint_absolute} pings with colors match on the right places"
