@@ -13,6 +13,7 @@ def add_to_history(code)
   @history << code
 end
 
+
 def dashboard
   @history.each do |code|
     puts "--------------------------------------------------"

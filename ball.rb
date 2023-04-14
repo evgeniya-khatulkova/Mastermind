@@ -21,8 +21,4 @@ include Game
       code.add_ball(Ball.new(color_random, position_random))
     end
   end
-
-  def self.computer_guess(player_code)
-    
-  end
 end
