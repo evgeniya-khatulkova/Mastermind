@@ -25,6 +25,11 @@ include Game
     @hints_absolute += hint
   end
 
+  def crack_number_code(code_breaker)
+    try = [1, 1, 1, 1]
+    code_breaker.history
+  end
+
   def compare_code(sourse_code, code_breaker)
     @balls = @balls.sort {|a, b| a.place<=>b.place}
     code_breaker.add_to_history(self)

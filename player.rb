@@ -13,10 +13,6 @@ def add_to_history(code)
   @history << code
 end
 
-def crack_number_code
-  try = [1, 1, 1, 1]
-  p @history
-end
 
 def dashboard
   @history.each do |code|

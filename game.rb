@@ -30,7 +30,8 @@ def self.set_sourse_code
 end
 
 def self.make_code
-  code_breaker = Player.new("computer")
+  # code_breaker = Player.new("computer")
+  computer_code = Code.new
   puts "You will choose 4 numbers for this game and computer will try to crack the code in 8 tries"
   4.times do
     puts "Give a number in range from 1 to 6"
@@ -39,9 +40,9 @@ def self.make_code
       puts "Give a number in range from 1 to 6"
       number = gets.chomp.to_i
     end
-    code_breaker.add_to_history(number)
+    computer_code.add_ball(number)
   end
-  code_breaker.crack_number_code
+  p computer_code
 end
 
 def self.choose_color(colors)
