@@ -27,28 +27,32 @@ include Game
 
   def crack_number_code
     computer = Player.new("computer")
-    i = 0
-    try = [1, 1, 1, 1]
-    hinting(computer, try)
-    if @hints_color == 0
-      try = try.each {|number| number += 1}
-      p try
-    elsif @hints_color > @hints_absolute
-      try = try.each {|number| number += 1 }
-      try[i+1] = number - 1
+      try = [1, 1, 1, 1]
+      i = 0
+      hinting(computer, try)
+      while computer.history.length < 8
+      if @hints_color == 0
+        try.map! {|number| number + 1}
+      elsif @hints_color > @hints_absolute
+        try.map! {|number| number += 1 }
+        try[i] = try[i+1] - 1
+        i += 1
+      elsif @hints_color == @hints_absolute
+        try.map! {|number| number += 1 }
+        try[i+1] = try [i] - 1
+      else
+
+      end
+
+      hinting(computer, try)
     end
-    hinting(computer, try)
-    p @hints_absolute
-    p @hints_color
+    puts "Oops, it seems like computer failed to hack code. Good for you!! You won the game. Computer lost :(("
+    end_game
   end
 
   def hinting(computer, try)
     if @balls == try
       puts "Computer cracked your code in #{computer.history.length + 1} try"
-      end_game
-    end
-    if computer.history.length + 1 > 9
-      puts "Oops, it seems like computer failed to hack code. Good for you!! You won the game."
       end_game
     end
     @hints_absolute = 0
@@ -57,9 +61,9 @@ include Game
     add_hint_color(hint_color)
     try.each_with_index{ |number, index| add_hint_absolute(1) if @balls[index] == number}
     computer.add_to_history(self)
-    puts "#{MAGENTA}Try number #{computer.history.length + 1}#{ENDCOLOR}"
+    puts "#{MAGENTA}Try number #{computer.history.length}#{ENDCOLOR}"
     puts "################################################################"
-    puts "Code: #{@balls}"
+    puts "Code: #{try}"
     puts "################################################################"
     puts "Numbers matches: #{@hints_color}"
     puts "On the right place: #{@hints_absolute}"
