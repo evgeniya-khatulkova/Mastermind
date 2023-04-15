@@ -28,12 +28,7 @@ include Game
   def crack_number_code
     computer = Player.new("computer")
     try = [1, 1, 1, 1]
-    if @balls == try
-      "Computer won the game"
-    end
     hinting(computer, try)
-    @hints_absolute = 0
-    @hints_color = 0
     try = [1, 1, 2, 2]
     hinting(computer, try)
     p @hints_absolute
@@ -41,6 +36,10 @@ include Game
   end
 
   def hinting(computer, try)
+    if @balls == try
+      puts "Computer cracked your code in #{computer.history.length + 1} try"
+      end_game
+    end
     @hints_absolute = 0
     @hints_color = 0
     hint_color = try.uniq.count {|number| @balls.include?(number)}
