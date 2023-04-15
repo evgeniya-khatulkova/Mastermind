@@ -30,10 +30,10 @@ include Game
     code_breaker.add_to_history(self)
 
    hint = @balls.count do |ball|
-      sourse_code.balls.any?{ |source_ball| source_ball.color == ball.color}
+      sourse_code.balls.one?{ |source_ball| source_ball.color == ball.color}
     end
     hint_absolute = @balls.count do |ball|
-      sourse_code.balls.any?{ |source_ball| source_ball.color == ball.color && source_ball.place == ball.place}
+      sourse_code.balls.one?{ |source_ball| source_ball.color == ball.color && source_ball.place == ball.place}
     end
 
     self.add_hint_color(hint)

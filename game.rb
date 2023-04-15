@@ -3,6 +3,7 @@ YELLOW="\e[33m"
 MAGENTA="\e[42m"
 ENDCOLOR="\e[0m"
 
+
 module Game
 
 def self.start_game
@@ -29,10 +30,19 @@ def self.set_sourse_code
 end
 
 def self.make_code
-  sourse_code = Code.new
-  choose_process(sourse_code)
-  p sourse_code
-  self.computer_code
+  code_breaker = Player.new("computer")
+  puts "You will choose 4 numbers for this game and computer will try to crack the code in 8 tries"
+  4.times do
+    puts "Give a number in range from 1 to 6"
+    number = gets.chomp.to_i
+    until (1..6).include?(number)
+      puts "Give a number in range from 1 to 6"
+      number = gets.chomp.to_i
+    end
+    code_breaker.add_to_history(number)
+  end
+
+  p code_breaker
 end
 
 def self.choose_color(colors)
@@ -100,16 +110,9 @@ positions = [1, 2, 3, 4]
   end
 end
 
-def self.computer_code
-computer_code = Code.new
-colors = ["red", "yellow", "blue", "green", "white", "black", "brown", "orange"]
-positions = [1, 2, 3, 4]
-i = 0
-while i < 4
-computer_code.add_ball(Ball.new("red", positions[i]))
-i += 1
-end
-p computer_code
+def self.computer_code(sourse_code)
+code_breaker = Player.new("computer")
+
 end
 
 def end_game
