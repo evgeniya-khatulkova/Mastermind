@@ -31,13 +31,22 @@ include Game
     if @balls == try
       "Computer won the game"
     end
+    hinting(computer, try)
+    @hints_absolute = 0
+    @hints_color = 0
+    try = [1, 1, 2, 2]
+    hinting(computer, try)
+    p @hints_absolute
+    p @hints_color
+  end
+
+  def hinting(computer, try)
+    @hints_absolute = 0
+    @hints_color = 0
     hint_color = try.uniq.count {|number| @balls.include?(number)}
     add_hint_color(hint_color)
     try.each_with_index{ |number, index| add_hint_absolute(1) if @balls[index] == number}
-    @hints_absolute
-    @hints_color
     computer.add_to_history(self)
-    p computer
   end
 
   def compare_code(sourse_code, code_breaker)
