@@ -30,7 +30,6 @@ def self.set_sourse_code
 end
 
 def self.make_code
-  # code_breaker = Player.new("computer")
   computer_code = Code.new
   puts "You will choose 4 numbers for this game and computer will try to crack the code in 8 tries"
   4.times do
@@ -42,7 +41,7 @@ def self.make_code
     end
     computer_code.add_ball(number)
   end
-  p computer_code
+  computer_code.crack_number_code
 end
 
 def self.choose_color(colors)

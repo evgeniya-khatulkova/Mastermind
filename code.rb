@@ -25,9 +25,18 @@ include Game
     @hints_absolute += hint
   end
 
-  def crack_number_code(code_breaker)
+  def crack_number_code
+    computer = Player.new("computer")
     try = [1, 1, 1, 1]
-    code_breaker.history
+    if @balls == try
+      "Computer won the game"
+    end
+    hint_color = try.uniq.count {|number| @balls.include?(number)}
+    add_hint_color(hint_color)
+    try.each_with_index{ |number, index| add_hint_absolute(1) if @balls[index] == number}
+    p @hints_absolute
+    p @hints_color
+
   end
 
   def compare_code(sourse_code, code_breaker)
