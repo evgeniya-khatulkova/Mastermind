@@ -41,8 +41,7 @@ def self.make_code
     end
     code_breaker.add_to_history(number)
   end
-
-  p code_breaker
+  code_breaker.crack_number_code
 end
 
 def self.choose_color(colors)
@@ -108,11 +107,6 @@ positions = [1, 2, 3, 4]
     positions.delete(chosen_position)
     code.add_ball(Ball.new(chosen_color, chosen_position))
   end
-end
-
-def self.computer_code(sourse_code)
-code_breaker = Player.new("computer")
-
 end
 
 def end_game
