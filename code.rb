@@ -25,27 +25,25 @@ include Game
     @hints_absolute += hint
   end
 
+  def failed_try(colors,try)
+    if @hints_color == 0
+      colors.delete(try[0])
+      colors.delete(try[3])
+    end
+  end
+
   def crack_number_code
     computer = Player.new("computer")
-      try = [1, 1, 1, 1]
-      i = 0
+      colors = [1, 2, 3, 4, 5, 6]
+      try = [1, 1, 2, 2]
       hinting(computer, try)
-      while computer.history.length < 8
-      if @hints_color == 0
-        try.map! {|number| number + 1}
-      elsif @hints_color > @hints_absolute
-        try.map! {|number| number += 1 }
-        try[i] = try[i+1] - 1
-        i += 1
-      elsif @hints_color == @hints_absolute
-        try.map! {|number| number += 1 }
-        try[i+1] = try [i] - 1
-      else
-
+      failed_try(colors,try)
+      2.times do
+        try.map!{|number| number + 2}
+        hinting(computer, try)
+        failed_try(colors,try)
       end
-
-      hinting(computer, try)
-    end
+    p colors
     puts "Oops, it seems like computer failed to hack code. Good for you!! You won the game. Computer lost :(("
     end_game
   end
