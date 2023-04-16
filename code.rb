@@ -43,14 +43,26 @@ include Game
         hinting(computer, try)
         failed_try(colors,try)
       end
-    p colors
+      i = 0
+      while i < colors.length
+      try.map!{|number| colors[i]}
+      hinting(computer, try)
+      if @hints_color == 0
+        colors.delete(try[i])
+      end
+      i += 1
+    end
+      while computer.history.length < 12
+        try.map!{|number| colors.sample}
+        hinting(computer, try)
+      end
     puts "Oops, it seems like computer failed to hack code. Good for you!! You won the game. Computer lost :(("
     end_game
   end
 
   def hinting(computer, try)
     if @balls == try
-      puts "Computer cracked your code in #{computer.history.length + 1} try"
+      puts "Computer cracked your code in #{computer.history.length} attempts"
       end_game
     end
     @hints_absolute = 0
